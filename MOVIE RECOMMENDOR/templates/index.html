@@ -1,10 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Recommender</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Welcome to the Movie Recommender!</h1>
-    <a href="/login">Login</a> or <a href="/signup">Signup</a>
+
+<header>
+    <h1>Movie Recommender</h1>
+</header>
+
+<div class="container">
+    <div class="movie-list">
+        <div class="movie-item">
+            <img src="{{ url_for('static', filename='movie-poster1.jpg') }}" alt="Movie 1">
+            <h3>Movie 1</h3>
+            <p>Some description about movie 1.</p>
+            <button class="recommend-btn" data-user-id="1">Recommend for User 1</button>
+        </div>
+        <div class="movie-item">
+            <img src="{{ url_for('static', filename='movie-poster2.jpg') }}" alt="Movie 2">
+            <h3>Movie 2</h3>
+            <p>Some description about movie 2.</p>
+            <button class="recommend-btn" data-user-id="2">Recommend for User 2</button>
+        </div>
+        <!-- Add more movie items as needed -->
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
