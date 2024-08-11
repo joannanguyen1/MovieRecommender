@@ -6,7 +6,7 @@ import torch.nn as nn
 import torch.optim as optim
 
 class Recommender:
-    def __init__(self, movie_path='data/movies.csv', rating_path='data/ratings.csv'):
+    def __init__(self, movie_path='MOVIE RECOMMENDOR/Data/movies.csv', rating_path='MOVIE RECOMMENDOR/Data/ratings.csv'):
         self.movies = pd.read_csv(movie_path) # puts the movies csv into pandas data frame
         self.ratings = pd.read_csv(rating_path)# puts ratings csv into pandas data fram
         self.model = None #intiate value to none for later/ will store deep learning 
@@ -20,18 +20,27 @@ class Recommender:
         latent_matrix = svd.fit_transform(user_movie_matrix) 
         self.similarity_matrix = cosine_similarity(latent_matrix)
         print(self.similarity_matrix)
+        print("hi Joanna")
+
+    def main(self):
+        self.__init__()
+        self.collaborative_filtering()
+        
+if __name__ == "__main__":
+    recommender = Recommender()
+    recommender.main()
 
     #def get_recommendations(self, user_id, top_n=10):
-    #    if self.similarity_matrix is None:
-    #        self.collaborative_filtering()
-#
-    #    similar_users = self.similarity_matrix[user_id - 1]
-    #    similar_users_indices = similar_users.argsort()[::-1][:top_n]
-#
-    #    recommended_movies = []
-    #    for idx in similar_users_indices:
-    #        similar_user_movies = self.ratings[self.ratings['userId'] == idx + 1]
-    #        recommended_movies.extend(similar_user_movies['movieId'].tolist())
-#
-    #    return list(set(recommended_movies))
-    #
+    #   if self.similarity_matrix is None:
+    #       self.collaborative_filtering()
+
+    #   similar_users = self.similarity_matrix[user_id - 1]
+    #   similar_users_indices = similar_users.argsort()[::-1][:top_n]
+
+    #   recommended_movies = []
+    #   for idx in similar_users_indices:
+    #       similar_user_movies = self.ratings[self.ratings['userId'] == idx + 1]
+    #       recommended_movies.extend(similar_user_movies['movieId'].tolist())
+
+    #   return list(set(recommended_movies))
+    
