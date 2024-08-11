@@ -33,6 +33,7 @@ class Recommender:
             recommended_movies.extend(similar_user_movies['movieId'].tolist())
 
         return list(set(recommended_movies))
+    
     def build_deep_learning_model(self, n_users, n_items):
         class RecommenderModel(nn.Module):
             def __init__(self, n_users, n_items, embedding_dim=50):
