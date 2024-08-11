@@ -15,27 +15,31 @@ class Recommender:
     def collaborative_filtering(self):
         user_movie_matrix = self.ratings.pivot_table(index='userId', columns='movieId', values='rating') # creates pivot table where the rows is UserUd columns MovieIDs and values as rating 
         user_movie_matrix.fillna(0, inplace=True) # fills all empty with zero 
+        print(user_movie_matrix)
 
         svd = TruncatedSVD(n_components=50, random_state=42) # instalizles the SVD model
         latent_matrix = svd.fit_transform(user_movie_matrix) 
         self.similarity_matrix = cosine_similarity(latent_matrix)
         print(self.similarity_matrix)
         print("hi Joanna")
+    def get_recommendations(self, user_id, top_n=10):
+        if self.similarity_matrix is None:
+            self.collaborative_filtering()
+
+        similar_users = self.similarity_matrix[user_id - 1]
+        print(similar_users)
 
     def main(self):
         self.__init__()
         self.collaborative_filtering()
+        self.get_recommendations()
         
 if __name__ == "__main__":
     recommender = Recommender()
     recommender.main()
 
-    #def get_recommendations(self, user_id, top_n=10):
-    #   if self.similarity_matrix is None:
-    #       self.collaborative_filtering()
 
-    #   similar_users = self.similarity_matrix[user_id - 1]
-    #   similar_users_indices = similar_users.argsort()[::-1][:top_n]
+        #similar_users_indices = similar_users.argsort()[::-1][:top_n]
 
     #   recommended_movies = []
     #   for idx in similar_users_indices:
