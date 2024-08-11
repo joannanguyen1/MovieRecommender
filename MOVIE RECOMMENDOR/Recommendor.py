@@ -4,6 +4,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 import tensorflow as tf
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input, Embedding, Flatten, Dense, Concatenate
+import torch
+import torch.nn as nn
+import torch.optim as optim
 
 class Recommender:
     def __init__(self, movie_path='data/movies.csv', rating_path='data/ratings.csv'):
