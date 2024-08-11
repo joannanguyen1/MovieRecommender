@@ -22,7 +22,7 @@ class Recommender:
         self.similarity_matrix = cosine_similarity(latent_matrix)
         print(self.similarity_matrix)
         print("hi Joanna")
-    def get_recommendations(self, user_id, top_n=10):
+    def get_recommendations(self, user_id=1, top_n=10):
         if self.similarity_matrix is None:
             self.collaborative_filtering()
 
